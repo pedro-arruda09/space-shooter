@@ -41,14 +41,14 @@ public class PointManager : MonoBehaviour
         score += points;
         scoreText.text = "Pontuação: " + score;
 
-        if (score >= 400)
+        if (score >= 800)
         {
             if (playerLives == null) {
                 playerLives = FindFirstObjectByType<PlayerLives>();
             }
             
             playerLives.AddLife();
-            score -= 400;
+            score = 0;
         }
     }
 }
