@@ -9,6 +9,7 @@ public class PointManager : MonoBehaviour
     public TMP_Text scoreText;
     public GameObject explosionPrefab;
 
+    public PlayerLives playerLives;
 
     void Start()
     {
@@ -39,5 +40,15 @@ public class PointManager : MonoBehaviour
     {
         score += points;
         scoreText.text = "Pontuação: " + score;
+
+        if (score >= 400)
+        {
+            if (playerLives == null) {
+                playerLives = FindFirstObjectByType<PlayerLives>();
+            }
+            
+            playerLives.AddLife();
+            score -= 400;
+        }
     }
 }

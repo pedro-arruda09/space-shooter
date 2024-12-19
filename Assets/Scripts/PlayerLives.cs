@@ -24,6 +24,15 @@ public class PlayerLives : MonoBehaviour
         }
     }
 
+    public void AddLife()
+    {
+        if (lives < 3)
+        {
+            lives++;
+            UpdateLivesUI();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Enemy"))
@@ -52,7 +61,7 @@ public class PlayerLives : MonoBehaviour
 
         if (lives <= 0)
         {
-            StartCoroutine(GameOver());
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 
@@ -62,7 +71,6 @@ public class PlayerLives : MonoBehaviour
         isGameOver = true;
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        // gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
 
